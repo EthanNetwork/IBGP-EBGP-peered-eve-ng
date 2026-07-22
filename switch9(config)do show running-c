@@ -1,0 +1,228 @@
+switch9(config)#do show running-config
+Building configuration...
+
+Current configuration : 6066 bytes
+!
+! Last configuration change at 18:34:31 UTC Wed Jul 22 2026
+!
+version 15.2
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+service compress-config
+!
+hostname switch9
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+username ethangrishin privilege 15 secret 5 $1$PKDK$.HvQe1Q/aMUITIWZTfSRl/
+no aaa new-model
+!
+!
+!
+!
+!
+ip arp inspection vlan 20
+ip arp inspection validate src-mac
+!
+!
+!
+ip dhcp snooping vlan 20
+no ip dhcp snooping information option
+ip dhcp snooping
+ip domain-name LANONE.com
+ip cef
+no ipv6 cef
+!
+!
+errdisable recovery cause dhcp-rate-limit
+errdisable recovery cause arp-inspection
+!
+spanning-tree mode rapid-pvst
+spanning-tree portfast edge bpdufilter default
+spanning-tree extend system-id
+spanning-tree vlan 20,99 priority 28672
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Loopback0
+ ip address 10.1.1.5 255.255.255.255
+!
+interface GigabitEthernet0/0
+ switchport trunk allowed vlan 20,99
+ switchport trunk encapsulation dot1q
+ switchport trunk native vlan 99
+ switchport mode trunk
+ ip arp inspection trust
+ negotiation auto
+ ip dhcp snooping trust
+!
+interface GigabitEthernet0/1
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security maximum 1500
+ switchport port-security violation restrict
+ switchport port-security aging time 90
+ switchport port-security aging type inactivity
+ switchport port-security
+ ip arp inspection limit rate 1500
+ negotiation auto
+ spanning-tree portfast edge
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet0/2
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security maximum 1500
+ switchport port-security violation restrict
+ switchport port-security aging time 90
+ switchport port-security aging type inactivity
+ switchport port-security
+ ip arp inspection limit rate 1500
+ negotiation auto
+ spanning-tree portfast edge
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet0/3
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security maximum 1500
+ switchport port-security violation restrict
+ switchport port-security aging time 90
+ switchport port-security aging type inactivity
+ switchport port-security
+ ip arp inspection limit rate 1500
+ negotiation auto
+ spanning-tree portfast edge
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/0
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security maximum 1500
+ switchport port-security violation restrict
+ switchport port-security aging time 90
+ switchport port-security aging type inactivity
+ switchport port-security
+ ip arp inspection limit rate 1500
+ negotiation auto
+ spanning-tree portfast edge
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/1
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security maximum 1500
+ switchport port-security violation restrict
+ switchport port-security aging time 90
+ switchport port-security aging type inactivity
+ switchport port-security
+ ip arp inspection limit rate 1500
+ negotiation auto
+ spanning-tree portfast edge
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/2
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security maximum 1500
+ switchport port-security violation restrict
+ switchport port-security aging time 90
+ switchport port-security aging type inactivity
+ switchport port-security
+ ip arp inspection limit rate 1500
+ negotiation auto
+ spanning-tree portfast edge
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/3
+ switchport access vlan 20
+ switchport mode access
+ switchport port-security maximum 1500
+ switchport port-security violation restrict
+ switchport port-security aging time 90
+ switchport port-security aging type inactivity
+ switchport port-security
+ ip arp inspection limit rate 1500
+ negotiation auto
+ spanning-tree portfast edge
+ spanning-tree bpduguard enable
+!
+ip forward-protocol nd
+!
+ip http server
+ip http secure-server
+!
+ip ssh version 2
+ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+!
+!
+!
+!
+!
+!
+control-plane
+!
+banner exec ^C
+IOSv - Cisco Systems Confidential -
+
+Supplemental End User License Restrictions
+
+
+This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+^C
+banner incoming ^C
+IOSv - Cisco Systems Confidential -
+
+Supplemental End User License Restrictions
+
+This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+^C
+banner login ^C
+IOSv - Cisco Systems Confidential -
+
+Supplemental End User License Restrictions
+
+This IOSv software is provided AS-IS without warranty of any kind. Under no circumstances may this software be used separate from the Cisco Modeling Labs Software that this software was provided with, or deployed or used as part of a production environment.
+
+By using the software, you agree to abide by the terms and conditions of the Cisco End User License Agreement at http://www.cisco.com/go/eula. Unauthorized use or distribution of this software is expressly prohibited.
+^C
+!
+line con 0
+ logging synchronous
+ login local
+line aux 0
+line vty 0 4
+ logging synchronous
+ login local
+ transport input ssh
+line vty 5 1500
+ logging synchronous
+ login local
+ transport input ssh
+!
+!
+end
+
+switch9(config)#
+
