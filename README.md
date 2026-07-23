@@ -1,6 +1,6 @@
 # LANONE Enterprise Edge Network
 
-A multi-layer enterprise network built in EVE-NG (Cisco IOSv), covering access-layer security, Layer 2/3 redundancy, dynamic routing, and a dual-homed Internet edge with NAT and eBGP peering to an upstream provider.
+A multi-layer enterprise network built in EVE-NG (Cisco IOSv), covering access-layer security, Layer 2/3 redundancy, dynamic routing, and a dual-homed Internet edge with NAT and eBGP peering to an upstream service provider. For reachability and high availability both Enterprise edge routers peer from their loopback interfaces, and the SP router peers from a BVI.
 
 ## Topology
 
@@ -30,7 +30,7 @@ vios1 uses `203.20.1.1`, vios6 uses `203.20.1.2`, and vios7sp terminates the blo
 
 Switch5 is the distribution point, trunking VLANs 10, 20, and 99 down to Switch9/Switch13 and up to both edge routers over 802.1Q. VLAN 99 is the native VLAN on every trunk. Rapid PVST+ runs throughout, with Switch5 pinned as root for VLANs 10/20/99 (priority 24576) and the access switches set higher (28672) so root placement is deterministic. Switch5 also runs global loopguard to protect against unidirectional link failures on non-designated ports.
 
-Access ports on Switch9 and Switch13 run PortFast with BPDU Guard, and BPDU filtering is enabled globally, keeping STP fast and edge ports isolated from accidental topology changes.
+Access ports on Switch9 and Switch13 run PortFast with BPDU Guard, and BPDU filtering is enabled globally (normally those two features are exclusive, but this particular configuration of interface/global allows them to coexist and both function as intended), keeping STP fast and edge ports isolated from accidental topology changes.
 
 ## Layer 2 security
 
@@ -62,8 +62,7 @@ Both groups use `preempt`, so the configured priority is restored automatically 
 
 ## Management and hardening
 
-- SSHv2 only, with encryption restricted to AES (128/192/256-CTR)
-- `ip http server` / `ip http secure-server` disabled on the edge routers
+- SSHv2 only
 - Local authentication (`login local`) on console and VTY lines across all devices
 
 ## Files
