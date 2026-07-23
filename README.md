@@ -4,7 +4,7 @@ A multi-layer enterprise network built in EVE-NG (Cisco IOSv), covering access-l
 
 ## Topology
 
-![Topology](topology.png)
+
 
 | Device | Role | AS / Domain | Loopback0 |
 |---|---|---|---|
@@ -36,10 +36,10 @@ Access ports on Switch9 and Switch13 run PortFast with BPDU Guard, and BPDU filt
 
 Switch9 (VLAN 20) and Switch13 (VLAN 10) apply an identical hardening profile to every access port:
 
-- **Port security** — max 1500 MAC addresses per port, violation mode `restrict`, 90-minute inactivity aging
-- **DHCP snooping** — enabled per-VLAN, with the uplink to Switch5 trusted; all other ports untrusted by default
-- **Dynamic ARP Inspection (DAI)** — validates source MAC against the DHCP snooping binding table, rate-limited to 1500 pps per access port, uplink trusted
-- **Errdisable recovery** — auto-recovers ports disabled by DHCP rate-limit or ARP inspection violations rather than requiring manual intervention
+- **Port security** : max 1500 MAC addresses per port, violation mode `restrict`, 90-minute inactivity aging
+- **DHCP snooping** : enabled per-VLAN, with the uplink to Switch5 trusted; all other ports untrusted by default
+- **Dynamic ARP Inspection (DAI)** : validates source MAC against the DHCP snooping binding table, rate-limited to 1500 pps per access port, uplink trusted
+- **Errdisable recovery** : auto recovers ports disabled by DHCP rate-limit or ARP inspection violations rather than requiring manual intervention
 
 This combination protects against rogue DHCP servers, ARP spoofing/MITM, and MAC flooding at the access layer.
 
