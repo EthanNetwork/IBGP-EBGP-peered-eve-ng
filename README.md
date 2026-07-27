@@ -2,6 +2,8 @@
 
 A multi-layer enterprise network built in EVE-NG (Cisco IOSv), covering access-layer security, Layer 2/3 redundancy, dynamic routing, and a dual-homed Internet edge with NAT and eBGP peering to an upstream service provider. For reachability and high availability both Enterprise edge routers peer from their loopback interfaces, and the SP router peers from a BVI.
 
+Edit: Upon attempting to expand the lab I ran into various issues with trying to advertise only the public routes into bgp and not the internal IPs; leading to a conclusion that outside of edge ECMP cases, peering with loopbacks from the customer edge into EBGP is not a great idea, and interface to interface peering is the simpler method.
+
 ## Topology
 
 
